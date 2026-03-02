@@ -11,7 +11,11 @@ function App() {
     entertainment: ""
   });
 
-  const [result, setResult] = useState("");
+  const [summary, setSummary] = useState("");
+  const [analysis, setAnalysis] = useState("");
+  const [projection, setProjection] = useState("");
+  const [score, setScore] = useState(0);
+  const [risk, setRisk] = useState("");
   const [loading, setLoading] = useState(false);
 
   const handleChange = (e) => {
@@ -25,29 +29,34 @@ function App() {
         "http://127.0.0.1:5000/ai-budget",
         data
       );
-      setResult(response.data.suggestion);
+
+      setSummary(response.data.summary);
+      setAnalysis(response.data.analysis);
+      setProjection(response.data.projection);
+      setScore(response.data.score);
+      setRisk(response.data.riskLevel);
     } catch (error) {
-      setResult("Error connecting to backend");
+      alert("Backend error");
     }
     setLoading(false);
+  };
+
+  const getRiskColor = () => {
+    if (risk.includes("Low")) return "#28a745";
+    if (risk.includes("Moderate")) return "#ffc107";
+    if (risk.includes("High")) return "#fd7e14";
+    return "#dc3545";
   };
 
   return (
     <div className="app">
       <div className="budget-card">
-        <h2>💰 AI Budget Planner</h2>
+        <h2>Smart Budget Planner</h2>
 
-        <div className="input-group">
-          <label>Monthly Allowance</label>
-          <input name="allowance" onChange={handleChange} />
-        </div>
-
-        <div className="section-title">Expenses</div>
-
-        {["rent", "food", "travel", "entertainment"].map((item) => (
-          <div className="input-group" key={item}>
-            <label>{item.charAt(0).toUpperCase() + item.slice(1)}</label>
-            <input name={item} onChange={handleChange} />
+        {Object.keys(data).map((key) => (
+          <div className="input-group" key={key}>
+            <label>{key.toUpperCase()}</label>
+            <input name={key} onChange={handleChange} />
           </div>
         ))}
 
@@ -56,10 +65,33 @@ function App() {
         </button>
       </div>
 
-      {result && (
-        <div className="ai-card">
-          <h3>🤖 AI Financial Insight</h3>
-          <p>{result}</p>
+      {summary && (
+        <div className="report-card">
+          <h3>Financial Health Report</h3>
+
+          <pre>{summary}</pre>
+
+          <div className="score-container">
+            <div
+              className="score-bar"
+              style={{ width: `${score}%`, background: getRiskColor() }}
+            ></div>
+          </div>
+
+          <p className="score-text">Score: {score}/100</p>
+
+          <div
+            className="risk-badge"
+            style={{ backgroundColor: getRiskColor() }}
+          >
+            {risk}
+          </div>
+
+          <h4>Detailed Analysis</h4>
+          <pre>{analysis}</pre>
+
+          <h4>6-Month Projection</h4>
+          <pre>{projection}</pre>
         </div>
       )}
     </div>
