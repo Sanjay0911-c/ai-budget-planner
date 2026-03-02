@@ -25,6 +25,7 @@ function App() {
   const analyzeBudget = async () => {
     try {
       setLoading(true);
+
       const response = await axios.post(
         "http://127.0.0.1:5000/ai-budget",
         data
@@ -36,27 +37,35 @@ function App() {
       setScore(response.data.score);
       setRisk(response.data.riskLevel);
     } catch (error) {
-      alert("Backend error");
+      alert("Backend error. Please check server.");
     }
+
     setLoading(false);
   };
 
   const getRiskColor = () => {
-    if (risk.includes("Low")) return "#28a745";
-    if (risk.includes("Moderate")) return "#ffc107";
-    if (risk.includes("High")) return "#fd7e14";
-    return "#dc3545";
+    if (risk.includes("Low")) return "#16a34a";
+    if (risk.includes("Moderate")) return "#f59e0b";
+    if (risk.includes("High")) return "#f97316";
+    return "#dc2626";
   };
 
   return (
     <div className="app">
+      {/* ===== INPUT CARD ===== */}
       <div className="budget-card">
-        <h2>Smart Budget Planner</h2>
+        <h2>Student Budget Planner</h2>
 
         {Object.keys(data).map((key) => (
           <div className="input-group" key={key}>
             <label>{key.toUpperCase()}</label>
-            <input name={key} onChange={handleChange} />
+            <input
+              type="number"
+              name={key}
+              value={data[key]}
+              onChange={handleChange}
+              placeholder={`Enter ${key}`}
+            />
           </div>
         ))}
 
@@ -65,21 +74,31 @@ function App() {
         </button>
       </div>
 
+      {/* ===== REPORT CARD ===== */}
       {summary && (
         <div className="report-card">
           <h3>Financial Health Report</h3>
 
-          <pre>{summary}</pre>
+          <div className="summary-text">
+            {summary}
+          </div>
 
+          {/* SCORE BAR */}
           <div className="score-container">
             <div
               className="score-bar"
-              style={{ width: `${score}%`, background: getRiskColor() }}
+              style={{
+                width: `${score}%`,
+                background: getRiskColor()
+              }}
             ></div>
           </div>
 
-          <p className="score-text">Score: {score}/100</p>
+          <div className="score-text">
+            Financial Score: {score}/100
+          </div>
 
+          {/* RISK BADGE */}
           <div
             className="risk-badge"
             style={{ backgroundColor: getRiskColor() }}
@@ -87,11 +106,17 @@ function App() {
             {risk}
           </div>
 
-          <h4>Detailed Analysis</h4>
-          <pre>{analysis}</pre>
+          {/* ANALYSIS */}
+          <div className="section-title">Detailed Analysis</div>
+          <div className="analysis-text">
+            {analysis}
+          </div>
 
-          <h4>6-Month Projection</h4>
-          <pre>{projection}</pre>
+          {/* PROJECTION */}
+          <div className="section-title">6-Month Projection</div>
+          <div className="projection-text">
+            {projection}
+          </div>
         </div>
       )}
     </div>

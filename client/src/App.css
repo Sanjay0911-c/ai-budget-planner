@@ -1,81 +1,154 @@
 body {
   margin: 0;
-  font-family: "Segoe UI", sans-serif;
-  background: #f4f6f9;
+  font-family: "Inter", "Segoe UI", sans-serif;
+  background: linear-gradient(135deg, #eef2f7, #e6ecf5);
 }
 
 .app {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 40px;
+  padding: 50px 20px;
 }
 
-.budget-card, .report-card {
-  background: white;
-  width: 450px;
-  padding: 30px;
-  border-radius: 20px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+/* ===== Main Input Card ===== */
+
+.budget-card {
+  background: #ffffff;
+  width: 480px;
+  padding: 35px;
+  border-radius: 24px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+  margin-bottom: 30px;
+}
+
+.budget-card h2 {
   margin-bottom: 25px;
+  font-size: 26px;
+  font-weight: 700;
+  color: #1e293b;
 }
 
 .input-group {
-  margin-bottom: 12px;
+  margin-bottom: 18px;
+}
+
+.input-group label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #64748b;
+  display: block;
+  margin-bottom: 6px;
+  letter-spacing: 0.5px;
 }
 
 input {
   width: 100%;
-  padding: 8px;
-  border-radius: 8px;
-  border: 1px solid #ddd;
+  padding: 10px 14px;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+  background: #f8fafc;
+  font-size: 14px;
+  transition: all 0.2s ease;
+}
+
+input:focus {
+  outline: none;
+  border-color: #4f46e5;
+  background: white;
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
 }
 
 button {
   width: 100%;
-  padding: 12px;
-  border-radius: 10px;
+  padding: 14px;
+  border-radius: 14px;
   border: none;
-  background: #4e73df;
+  background: linear-gradient(90deg, #4f46e5, #6366f1);
   color: white;
-  font-weight: bold;
+  font-weight: 600;
+  font-size: 15px;
   cursor: pointer;
-  margin-top: 10px;
+  margin-top: 15px;
+  transition: all 0.2s ease;
 }
 
 button:hover {
-  opacity: 0.9;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(79, 70, 229, 0.2);
 }
+
+/* ===== Report Card ===== */
+
+.report-card {
+  background: #ffffff;
+  width: 480px;
+  padding: 35px;
+  border-radius: 24px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+}
+
+.report-card h3 {
+  font-size: 22px;
+  margin-bottom: 20px;
+  color: #1e293b;
+}
+
+.summary-text {
+  font-size: 14px;
+  line-height: 1.6;
+  color: #334155;
+}
+
+/* ===== Score Bar ===== */
 
 .score-container {
   width: 100%;
-  height: 18px;
-  background: #e9ecef;
-  border-radius: 10px;
-  margin-top: 15px;
+  height: 14px;
+  background: #e2e8f0;
+  border-radius: 20px;
+  margin-top: 18px;
   overflow: hidden;
 }
 
 .score-bar {
   height: 100%;
+  border-radius: 20px;
   transition: width 1s ease-in-out;
 }
 
 .score-text {
-  font-weight: bold;
-  margin-top: 8px;
+  font-weight: 600;
+  margin-top: 10px;
+  font-size: 14px;
 }
+
+/* ===== Risk Badge ===== */
 
 .risk-badge {
-  padding: 8px;
-  border-radius: 8px;
-  color: white;
-  font-weight: bold;
+  padding: 10px;
+  border-radius: 14px;
+  font-weight: 600;
   text-align: center;
-  margin: 10px 0;
+  margin: 15px 0;
+  font-size: 14px;
+  color: white;
 }
 
-pre {
+/* ===== Section Headings ===== */
+
+.section-title {
+  font-size: 16px;
+  font-weight: 700;
+  margin-top: 20px;
+  margin-bottom: 8px;
+  color: #1e293b;
+}
+
+.analysis-text,
+.projection-text {
+  font-size: 14px;
+  line-height: 1.7;
+  color: #334155;
   white-space: pre-wrap;
-  font-family: inherit;
 }
