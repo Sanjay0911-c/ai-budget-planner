@@ -2,13 +2,23 @@ import { useState } from "react";
 import axios from "axios";
 import "./App.css";
 
+/*
+  Backend URL
+  - In development: uses localhost
+  - In production (Vercel): uses VITE_BACKEND_URL
+*/
+
+const BACKEND_URL =
+  process.env.REACT_APP_BACKEND_URL ||
+  "https://ai-budget-planner-production.up.railway.app";
+
 function App() {
   const [data, setData] = useState({
     allowance: "",
     rent: "",
     food: "",
     travel: "",
-    entertainment: ""
+    entertainment: "",
   });
 
   const [summary, setSummary] = useState("");
@@ -27,7 +37,7 @@ function App() {
       setLoading(true);
 
       const response = await axios.post(
-        "http://127.0.0.1:5000/ai-budget",
+        `${BACKEND_URL}/ai-budget`,
         data
       );
 
@@ -37,17 +47,18 @@ function App() {
       setScore(response.data.score);
       setRisk(response.data.riskLevel);
     } catch (error) {
-      alert("Backend error. Please check server.");
+      console.error(error);
+      alert("Unable to connect to server. Please try again.");
     }
 
     setLoading(false);
   };
 
   const getRiskColor = () => {
-    if (risk.includes("Low")) return "#16a34a";
-    if (risk.includes("Moderate")) return "#f59e0b";
-    if (risk.includes("High")) return "#f97316";
-    return "#dc2626";
+    if (risk.includes("Low")) return "#16a34a";       // Green
+    if (risk.includes("Moderate")) return "#f59e0b";  // Yellow
+    if (risk.includes("High")) return "#f97316";      // Orange
+    return "#dc2626";                                 // Red (Critical)
   };
 
   return (
@@ -89,7 +100,8 @@ function App() {
               className="score-bar"
               style={{
                 width: `${score}%`,
-                background: getRiskColor()
+                background: getRiskColor(),
+                transition: "width 1s ease-in-out",
               }}
             ></div>
           </div>
