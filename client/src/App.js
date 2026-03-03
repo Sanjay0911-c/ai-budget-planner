@@ -65,7 +65,8 @@ function App() {
     <div className="app">
       {/* ===== INPUT CARD ===== */}
       <div className="budget-card">
-        <h2>Student Budget Planner</h2>
+        <h2>Smart Budget Planner</h2>
+        
 
         {Object.keys(data).map((key) => (
           <div className="input-group" key={key}>

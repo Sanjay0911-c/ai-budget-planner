@@ -9,7 +9,7 @@ app.use(cors());
 app.use(express.json());
 
 app.get("/", (req, res) => {
-  res.send("Student Budget Planner Backend Running");
+  res.send("Smart Budget Planner Backend Running");
 });
 
 app.post("/ai-budget", (req, res) => {
