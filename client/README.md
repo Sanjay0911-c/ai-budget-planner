@@ -1,70 +1,163 @@
-# Getting Started with Create React App
+# 💰 Smart Budget Planner
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A full-stack web application that helps students analyze their monthly budget, calculate a financial risk score, and receive smart recommendations along with a 6-month financial projection.
 
-## Available Scripts
+🌐 **Live Demo:**  
+https://ai-budget-planner-rosy.vercel.app/
 
-In the project directory, you can run:
+---
 
-### `npm start`
+## 🚀 Features
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- 📊 Monthly expense analysis
+- 🎯 Financial risk score (0–100)
+- 🚦 Risk level classification:
+  - Low
+  - Moderate
+  - High
+  - Critical
+- 📈 6-Month financial projection
+- 🧠 Smart financial recommendations
+- 📱 Fully responsive mobile-friendly UI
+- ☁️ Cloud deployed (Frontend + Backend)
+- 🔄 Automatic deployment via GitHub integration
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+---
 
-### `npm test`
+## 🏗️ Tech Stack
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Frontend
+- React.js
+- Axios
+- CSS (Responsive Design)
+- Hosted on Vercel
 
-### `npm run build`
+### Backend
+- Node.js
+- Express.js
+- REST API
+- Hosted on Railway
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+---
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## 🔄 How It Works
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+1. The user enters:
+   - Monthly allowance
+   - Rent
+   - Food expenses
+   - Travel expenses
+   - Entertainment expenses
 
-### `npm run eject`
+2. The React frontend sends a POST request to the backend API:
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+   /ai-budget
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+3. The backend:
+   - Calculates total expenses
+   - Computes savings ratio
+   - Generates a financial risk score
+   - Classifies risk level
+   - Produces smart financial suggestions
+   - Generates a 6-month projection
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+4. The results are returned and dynamically displayed in the UI.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+---
 
-## Learn More
+## 🧠 Risk Score Calculation
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+The risk score is calculated based on:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- Expense-to-income ratio
+- Savings percentage
+- Overspending behavior
 
-### Code Splitting
+### Score Classification
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+| Score Range | Risk Level |
+|-------------|------------|
+| 80–100      | Low Risk   |
+| 60–79       | Moderate Risk |
+| 40–59       | High Risk  |
+| 0–39        | Critical Risk |
 
-### Analyzing the Bundle Size
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## 📂 Project Structure
 
-### Making a Progressive Web App
+smart-budget-planner/
+│
+├── client/        # React Frontend
+│
+└── server/        # Express Backend
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+---
 
-### Advanced Configuration
+## ⚙️ Local Setup (Optional)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+### Clone Repository
 
-### Deployment
+git clone https://github.com/YOUR_USERNAME/ai-budget-planner.git
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+---
 
-### `npm run build` fails to minify
+### Backend Setup
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+cd server  
+npm install  
+npm start  
+
+Backend runs on:  
+http://localhost:5000  
+
+---
+
+### Frontend Setup
+
+cd client  
+npm install  
+npm start  
+
+Frontend runs on:  
+http://localhost:3000  
+
+---
+
+## 🌍 Deployment
+
+Frontend:
+- Hosted on Vercel
+- Automatically redeploys on every GitHub push
+
+Backend:
+- Hosted on Railway
+- Public REST API endpoint
+
+Both services communicate securely over HTTPS.
+
+---
+
+## 📌 Future Improvements
+
+- Integrate real AI model (Gemini / OpenAI)
+- Add authentication system
+- Add database for saving budget history
+- Add graphical charts (Pie / Bar graphs)
+- Add downloadable PDF financial report
+- Add user dashboard with history tracking
+
+---
+
+## 👨‍💻 Author
+
+Sanjay Chandrakumaran  
+Computer Science & Engineering  
+Madras Institute of Technology  
+Anna University
+
+---
+
+## 📜 License
+
+This project is created for academic and demonstration purposes.
